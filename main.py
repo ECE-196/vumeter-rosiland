@@ -11,9 +11,16 @@ status.direction = Direction.OUTPUT
 
 led_pins = [
     board.IO21,
-    board.IO26, # type: ignore
+    board.IO26,
     board.IO47,
-    # do the rest...
+    board.IO33,
+    board.IO34,
+    board.IO48,
+    board.IO35,
+    board.IO36,
+    board.IO37,
+    board.IO38,
+    board.IO39
 ]
 
 leds = [DigitalInOut(pin) for pin in led_pins]
@@ -27,11 +34,15 @@ while True:
 
     print(volume)
 
-    leds[0].value = not leds[0].value
-    leds[1].value = not leds[0].value
+    volume_limits = [18000,21000,24000,27000,30000,33000,36000,39000,42000,45000,48000]
 
-    sleep(1)
+    for i in range(11):
+        if volume > volume_limits[i]:
+            leds[i].value = 1
 
-    # instead of blinking,
-    # how can you make the LEDs
-    # turn on like a volume meter?
+    sleep(0.02)
+
+    for i in range(10,0,-1):
+        if volume < volume_limits[i]:
+            leds[i].value = 0
+
