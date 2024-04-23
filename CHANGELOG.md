@@ -6,6 +6,7 @@ Rosalind Chou
 
 ### Added
 changelog file
+vu meter and enclosure video
 
 ### Changed
 main.py code
